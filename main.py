@@ -8,18 +8,18 @@ def main():
 		"3: IF y < x THEN end ELSE begin",
 		"4: LABEL end"]
 	
-	ex2 = ["1: z := 0"
-		,"2: LABEL begin"
-		,"3: a := x + 7"
-		,"4: y := y + a"
-		,"5: b := y % 3"
-		,"6: x := x - b"
-		,"7: c := x + b"
-		,"8: z := z - c"
-		,"9: IF y < x THEN end ELSE begin"
-		,"10: LABEL end"
-		,"11: RETURN z"
-		,"12: GOTO end"]
+	ex2 = ["1: z := 0",
+		"2: LABEL begin",
+		"3: a := x + 7",
+		"4: y := y + a",
+		"5: b := y % 3",
+		"6: x := x - b",
+		"7: c := x + b",
+		"8: z := z - c",
+		"9: IF y < x THEN end ELSE begin",
+		"10: LABEL end",
+		"11: RETURN z",
+		"12: GOTO end"]
 	
 	ex3 =[
 		"1: a := 0",
@@ -36,9 +36,14 @@ def main():
 		"12: GOTO loop",
 		"13: LABEL end",
 		"14: RETURN a"]
-	
-	gen_set = get_kill(ex3,True)
-	fp_iteration(gen_set)
+
+	ex4 =[
+		"1: x := CALL f(x,y+5)",
+		"2: M[x+8] := y+5+x",
+		"3: a := M[x+5]"
+	]
+	gen_set = get_kill(ex3,False)
+	fp_iteration(gen_set,True)
 
 
 if __name__ == '__main__':

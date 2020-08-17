@@ -1,0 +1,64 @@
+Iteration 0
+Stmt num| out[i]		 | in[i]
+1	| 	 | 
+2	| 	 | 
+3	| 	 | 
+4	| 	 | 
+5	| 	 | 
+6	| 	 | 
+7	| 	 | 
+8	| 	 | 
+9	| 	 | 
+10	| 	 | 
+11	| 	 | 
+12	| 	 | 
+13	| 	 | 
+14	| 	 | 
+Iteration 1
+Stmt num| out[i]		 | in[i]
+1	| n,a	 | n
+2	| n,a,b	 | n,a
+3	| n,z,a,b	 | n,a,b
+4	| n,z,a,b	 | n,z,a,b
+5	| a,b,n	 | n,z,a,b
+6	| a,b,n	 | a,b,n
+7	| b,t,n	 | a,b,n
+8	| t,n	 | b,t,n
+9	| n	 | t,n
+10	| 	 | n
+11	| 	 | 
+12	| 	 | 
+13	| a	 | a
+14	| 	 | a
+Iteration 2
+Stmt num| out[i]		 | in[i]
+1	| n,a	 | n
+2	| n,a,b	 | n,a
+3	| n,z,a,b	 | n,a,b
+4	| n,z,a,b	 | n,z,a,b
+5	| a,b,n	 | n,z,a,b
+6	| a,b,n	 | a,b,n
+7	| b,t,n	 | a,b,n
+8	| t,n,a	 | b,t,n
+9	| n,a,b	 | t,n,a
+10	| n,a,b	 | n,a,b
+11	| n,z,a,b	 | n,a,b
+12	| n,z,a,b	 | n,z,a,b
+13	| a	 | a
+14	| 	 | a
+Iteration 3
+Stmt num| out[i]		 | in[i]
+1	| n,a	 | n
+2	| n,a,b	 | n,a
+3	| n,z,a,b	 | n,a,b
+4	| n,z,a,b	 | n,z,a,b
+5	| a,b,n	 | n,z,a,b
+6	| a,b,n	 | a,b,n
+7	| b,t,n	 | a,b,n
+8	| t,n,a	 | b,t,n
+9	| n,a,b	 | t,n,a
+10	| n,a,b	 | n,a,b
+11	| n,z,a,b	 | n,a,b
+12	| n,z,a,b	 | n,z,a,b
+13	| a	 | a
+14	| 	 | a
