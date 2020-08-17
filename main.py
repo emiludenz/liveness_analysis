@@ -7,6 +7,7 @@ def main():
 		"2: a := z+b",
 		"3: IF y < x THEN end ELSE begin",
 		"4: LABEL end"]
+	
 	ex2 = ["1: z := 0"
 		,"2: LABEL begin"
 		,"3: a := x + 7"
@@ -19,6 +20,7 @@ def main():
 		,"10: LABEL end"
 		,"11: RETURN z"
 		,"12: GOTO end"]
+	
 	ex3 =[
 		"1: a := 0",
 		"2: b := 1",
@@ -34,6 +36,7 @@ def main():
 		"12: GOTO loop",
 		"13: LABEL end",
 		"14: RETURN a"]
+	
 	gen_set = get_kill(ex3,True)
 	fp_iteration(gen_set)
 
