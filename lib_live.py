@@ -7,7 +7,7 @@ def find_label(str, lab):
 		else:
 			continue
 def replace_relop(str):
-	return str.replace("+",",").replace("-",",").replace("*",",").replace("/",",").replace("%",",").replace(" ","")
+	return str.replace("+",",").replace("-",",").replace("*",",").replace("/",",").replace("%",",").replace(" ","").replace("<",",").replace("=",",").replace(">",",")
 def replace_nums(str):
 	tmp = str.replace("0","å").replace("1","å").replace("2","å").replace("3","å").replace("4","å").replace("5","å").replace("6","å").replace("7","å").replace("8","å").replace("9","")
 	tmp = tmp.replace(",å","").replace("å","").replace(" ","")
@@ -15,25 +15,19 @@ def replace_nums(str):
 
 def get_kill(str, output=True):
 	l = [["stmt","Succ","Gen","Kill"]]
-	
 	for s in str:
 		# 0=statement num,1=succ,2=gen,3=kill,
 		row = ["","","",""]
-		
-		
 		if ": " in s:
 			# statement number
-			
 			row[0] =  s[:s.find(": ")]
 			# Succ
 			if len(str)+1 != int(row[0])+1:
 				row[1] = int(row[0])+1
-		
-		
 			
 		if "IF" in s:
 			#Gen
-			row[2] = s[s.find("IF")+3:s.find("THEN")].replace("<",",").replace("=",",").replace(">",",").replace(" ","")
+			row[2] = replace_nums(replace_relop(s[s.find("IF")+3:s.find("THEN")]))
 			#succ
 			t_lab = s[s.find("THEN")+5:s.find("ELSE")].replace(" ","")
 			f_lab = s[s.find("ELSE")+5:].replace(" ","")
@@ -114,7 +108,7 @@ def join_set(set1,set2):
 	if type(set2) != type([]):
 		set2 = set2.split(",")
 		#set2 = [set2]
-	for s in set1+set2:
+	for s in set1 + set2:
 		if s not in ret and s != '':
 			ret.append(s)
 	return ret
@@ -122,7 +116,7 @@ def join_set(set1,set2):
 def clean_set(set1):
 	ret = []
 	for s in set1:
-		if s != '':
+		if s != '' and s not in ret:
 			ret.append(s)
 	return ret
 
@@ -134,18 +128,19 @@ def print_in_out(list1,list2,iter):
 	for i in range(len(list1)):
 		out = ",".join(list1[i])
 		out = out.replace(" ","")
-		o = out.ljust(width-len(out)," ")
-		
+		o = out.ljust((width-len(out))," ")
+		            
 		#print(o.replace(" ","ø"))
 		_in = ",".join(list2[i]).replace(" ","")
-		_i = _in.ljust(width-len(_in)," ")
+		_i = _in.ljust((width-len(_in))," ")
 		print(f"{i+1}\t| {o} | {_i} |")
 		#print(len(out))
- 
+ 		
 
 def fp_iteration(gen_kill_set, output):
 	m = gen_kill_set[1:]
 	res = [["out[i]","in[i]"]]
+	ret = []
 	out_set = ["" for i in range(len(m))]
 	in_set = ["" for i in range(len(m))]
 	iteration = 0
@@ -156,6 +151,7 @@ def fp_iteration(gen_kill_set, output):
 		iteration += 1
 		prev_out = out_set.copy()
 		prev_in = in_set.copy()
+		ret.append([prev_out,prev_in])
 		out_set = ["" for i in range(len(m))]
 		in_set = ["" for i in range(len(m))]
 		
@@ -171,8 +167,8 @@ def fp_iteration(gen_kill_set, output):
 					s = int(s)
 					if s <= len(m)+1:
 						# s - 1 to convert between the zero index array and the original numbering
-						succ_set = join_set(succ_set,in_set[s-1])
-						succ_set = join_set(succ_set,prev_in[s-1])
+						succ_set = join_set(succ_set, in_set[s-1])
+						succ_set = join_set(succ_set, prev_in[s-1])
 
 			# out set
 			out_set[i] = succ_set
@@ -193,4 +189,8 @@ def fp_iteration(gen_kill_set, output):
 		if output:
 			print_in_out(out_set,in_set,iteration)
 		
+	return ret
 
+
+def get_interference_table(kill_set, fp_iter):
+	pass
